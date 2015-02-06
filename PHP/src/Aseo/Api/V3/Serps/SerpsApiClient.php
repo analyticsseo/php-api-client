@@ -5,7 +5,7 @@ namespace Aseo\Api\V3\Serps;
 * Analytics SEO PHP CLient
 *
 * Serach Engine results page CLient
-*
+
 * @version 3
 *
 * @author Nuno Franco da Costa <nuno@francodacosta.com>
@@ -85,25 +85,48 @@ class SerpsApiClient
         return $this;
     }
 
+
+    /**
+     * executes the api call
+     *
+     * @param string $data
+     */
     public function searchResults($data)
     {
         $authHeader = $this->getAuth()->computeHash();
         $authParts = explode(':', $authHeader);
 
-        print $authHeader;
-
         $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
-        $request =  $this->transport->post('/search_results/', array(
-                $authParts[0] => $authParts[1]
-        ),$data);
-        // $request->setBody($data); #set body!
+        $request =  $this->transport->post(
+            '/search_results/',
+            [
+                'Content-Type' => "application/json",
+                $authParts[0] => $authParts[1],
+            ]
+        );
 
-
-
+        $request->setBody($data); #set body!
 
         $response = $request->send();
 
-        return $response->json;
+        return $response->json();
     }
 
+    /**
+     * executes the api call
+     *
+     * @param string $id the job id
+     */
+    public function fetchJobData($id)
+    {
+        $authHeader = $this->getAuth()->computeHash();
+        $authParts = explode(':', $authHeader);
+
+        $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+
+        $request =  $this->transport->get('/search_results/' . $id);
+        $response = $request->send();
+
+        return $response->json();
+    }
 }
