@@ -143,7 +143,7 @@ class SerpsRequest
 
     public function __toString()
     {
-        $json = [];
+        $json = array();
 
         foreach (get_object_vars($this) as $variable => $value) {
             if ("supportedSearchEngines" == $variable) {
