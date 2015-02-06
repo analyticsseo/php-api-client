@@ -36,6 +36,7 @@ class KeyAuth implements AuthInterface
     public function computeHash()
     {
         $time = time();
+
         $hashSource = $time . $this->getApiKey() . $this->getSalt();
         $hash = hash_hmac('sha256', $hashSource, $this->getApiSecret());
 
