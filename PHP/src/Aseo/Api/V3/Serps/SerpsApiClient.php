@@ -99,10 +99,10 @@ class SerpsApiClient
         $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
         $request =  $this->transport->post(
             '/search_results/',
-            [
+            array(
                 'Content-Type' => "application/json",
                 $authParts[0] => $authParts[1],
-            ]
+            )
         );
 
         $request->setBody($data); #set body!

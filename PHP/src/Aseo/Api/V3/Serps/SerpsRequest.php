@@ -81,7 +81,7 @@ class SerpsRequest
      *
      * @var string[]
      */
-    private $supportedSearchEngines = ['bing', 'google', 'yahoo', 'yandex'];
+    private $supportedSearchEngines = array('bing', 'google', 'yahoo', 'yandex');
 
     public function __construct(array $data)
     {
