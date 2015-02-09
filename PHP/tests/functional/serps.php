@@ -37,4 +37,5 @@ while (true) {
     }
 
     var_export($fetchJobResponse);
+    break;
 }

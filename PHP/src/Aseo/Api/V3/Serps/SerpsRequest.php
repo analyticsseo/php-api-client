@@ -303,7 +303,6 @@ class SerpsRequest
         return $this;
     }
 
-
     /**
      * Get the value of list of supported search engines
      *
