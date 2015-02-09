@@ -2,11 +2,13 @@
 
 include __DIR__ . '/../../vendor/autoload.php';
 
+// Uncommoment the following lines and add the proper values
 // define('API_KEY', 'a');
 // define('API_SECRET', 'b');
 // define('SALT', 'c');
 
-include 'settings.php';
+// optionaly you can define the constansts in a file named settings.php
+@include 'settings.php';
 
 $guzzle = new Guzzle\Http\Client('http://v3.api.analyticsseo.com');
 
@@ -16,7 +18,7 @@ $auth->setApiSecret(API_SECRET);
 $auth->setSalt(SALT);
 
 $serps = new Aseo\Api\V3\Serps\SerpsApiClient($guzzle, $auth);
-$serps->debug = true;
+$serps->debug = false;
 
 $query = array(
     'region'=>'global',
