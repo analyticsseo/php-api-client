@@ -2,7 +2,7 @@
 
 ## PHP Client
 
-### Pre requisits
+### Pre requisites
 1. a working php version > 5.3
 2. composer should be installed, see [composer](http://www.getcomposer.org) for details how to install
 
@@ -12,4 +12,4 @@
 2. go to the cloned folder folder
 3. run ```composer.phar install```
 
-to test the instalation go to ```tests\functional``` folder and run ```php serps.php```
+to test the installation go to ```tests\functional``` folder and run ```php serps.php```
