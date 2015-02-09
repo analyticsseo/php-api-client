@@ -1,6 +1,11 @@
 <?php
 
 include __DIR__ . '/../../vendor/autoload.php';
+
+// define('API_KEY', 'a');
+// define('API_SECRET', 'b');
+// define('SALT', 'c');
+
 include 'settings.php';
 
 $guzzle = new Guzzle\Http\Client('http://v3.api.analyticsseo.com');
@@ -17,7 +22,6 @@ $query = array(
     'region'=>'global',
     'search_engine' => 'google',
     'phrase' => 'abc',
-    'max_results' => 1000000,
     'universal' => 0,
 );
 
