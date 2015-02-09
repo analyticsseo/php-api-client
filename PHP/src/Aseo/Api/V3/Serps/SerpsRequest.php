@@ -2,9 +2,10 @@
 namespace Aseo\Api\V3\Serps;
 
 /**
-* Analytics SEO PHP CLient
+* Search Engine Results Page Request.
 *
-* Serach Engine results page CLient
+* This class emulates the api request you can make, it will try to validate as much of the data as possible
+* before the request is sent to the api
 *
 * @version 3
 *
@@ -291,11 +292,11 @@ class SerpsRequest
     /**
      * Set the value of strategy configuration
      *
-     * @param object parameters
+     * @param string[] parameters an associative array with the parameters for the specific strategy
      *
      * @return self
      */
-    public function setParameters(object $parameters)
+    public function setParameters(array $parameters)
     {
         $this->parameters = $parameters;
 
