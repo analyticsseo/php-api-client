@@ -12,7 +12,7 @@ namespace Aseo\Api\Auth;
 * @link https://github.com/analyticsseo/api-client/
 */
 
-class KeyAuth implements AuthInterface
+class KeyAuth
 {
     /**
      * Api salt

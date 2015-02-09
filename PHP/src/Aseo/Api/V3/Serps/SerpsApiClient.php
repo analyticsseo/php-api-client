@@ -14,7 +14,7 @@ namespace Aseo\Api\V3\Serps;
 * @link https://github.com/analyticsseo/api-client/
 */
 
-use Aseo\Api\Auth\AuthInterface;
+use Aseo\Api\Auth\KeyAuth;
 use \Guzzle\Http\Client as GuzzleClient;
 
 class SerpsApiClient
@@ -27,11 +27,11 @@ class SerpsApiClient
 
     /**
      * AUthentication Mechanism
-     * @var AuthInterface
+     * @var KeyAuth
      */
     private $auth;
 
-    public function __construct(\Guzzle\Http\Client $transport, AuthInterface $auth)
+    public function __construct(\Guzzle\Http\Client $transport, KeyAuth $auth)
     {
         $this->setTransport($transport);
         $this->setAuth($auth);
@@ -64,7 +64,7 @@ class SerpsApiClient
     /**
      * Get the value of AUthentication Mechanism
      *
-     * @return AuthInterface
+     * @return KeyAuth
      */
     public function getAuth()
     {
@@ -74,11 +74,11 @@ class SerpsApiClient
     /**
      * Set the value of AUthentication Mechanism
      *
-     * @param AuthInterface auth
+     * @param KeyAuth auth
      *
      * @return self
      */
-    public function setAuth(AuthInterface $auth)
+    public function setAuth(KeyAuth $auth)
     {
         $this->auth = $auth;
 

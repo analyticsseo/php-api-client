@@ -326,5 +326,4 @@ class SerpsRequest
 
         return $this;
     }
-
 }

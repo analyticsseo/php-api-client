@@ -25,14 +25,14 @@ $data = new Aseo\Api\V3\Serps\SerpsRequest($query);
 
 $searchResultsResponse = $serps->searchResults($data);
 
-sleep(10);
 
 $jobId = $searchResultsResponse['jid'];
 
 while (true) {
     $fetchJobResponse = $serps->fetchJobData($jobId);
+
     if (false == $fetchJobResponse['ready']) {
-        sleep(10);
+        sleep(3);
         continue;
     }
 
