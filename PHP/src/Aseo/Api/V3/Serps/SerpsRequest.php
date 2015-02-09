@@ -115,31 +115,49 @@ class SerpsRequest
      */
     public function populateField($field, $value)
     {
-        $methodName = "set" . $this->toCamelCase($field);
 
-        if (false === method_exists($this, $methodName)) {
-            throw new \OutOfBoundsException('SERPS call does not support the parameter ' . $field);
+        if ("search_engine" == $field) {
+            return $this->setSearchEngine($value);
         }
 
-        $this->$methodName($value);
-    }
-
-    /**
-     * converts a string to CamelCase
-     *
-     * @param string $value
-     *
-     * @return string
-     */
-    private function toCamelCase($value)
-    {
-        $parts = explode('_', $value);
-        $name = '';
-        foreach ($parts as $part) {
-            $name .= ucfirst($part);
+        if ("region" == $field) {
+            return $this->setRegion($value);
         }
 
-        return $name;
+        if ("town" == $field) {
+            return $this->setTown($value);
+        }
+
+        if ("search_type " == $field) {
+            return $this->setSearchType($value);
+        }
+
+        if ("language" == $field) {
+            return $this->setLanguage($value);
+        }
+
+        if ("max_results" == $field) {
+            return $this->setMaxResults($value);
+        }
+
+        if ("phrase" == $field) {
+            return $this->setPhrase($value);
+        }
+
+        if ("universal" == $field) {
+            return $this->setUniversal($value);
+        }
+
+        if ("strategy" == $field) {
+            return $this->setStrategy($value);
+        }
+
+        if ("parameters" == $field) {
+            return $this->setParameters($value);
+        }
+
+        throw new \OutOfBoundsException('SERPS call does not support the parameter ' . $field);
+
     }
 
     public function __toString()
@@ -147,6 +165,7 @@ class SerpsRequest
         $json = array();
 
         foreach (get_object_vars($this) as $variable => $value) {
+            // supportedSearchEngines is internal, should not be present in the request
             if ("supportedSearchEngines" == $variable) {
                 continue;
             }

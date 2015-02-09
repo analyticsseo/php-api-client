@@ -143,5 +143,4 @@ class KeyAuth
 
         return $this;
     }
-
 }

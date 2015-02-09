@@ -22,12 +22,16 @@ class SerpsApiClient
     /**
      * HTTP transport
      * @var \Guzzle\Http\Client
+     *
+     * @read-only
      */
     private $transport;
 
     /**
      * AUthentication Mechanism
      * @var KeyAuth
+     *
+     * @read-only
      */
     private $auth;
 
@@ -36,55 +40,6 @@ class SerpsApiClient
         $this->setTransport($transport);
         $this->setAuth($auth);
     }
-
-    /**
-     * Get the value of HTTP transport
-     *
-     * @return \Guzzle\Http\Client
-     */
-    public function getTransport()
-    {
-        return $this->transport;
-    }
-
-    /**
-     * Set the value of HTTP transport
-     *
-     * @param \Guzzle\Http\Client transport
-     *
-     * @return self
-     */
-    public function setTransport(\Guzzle\Http\Client $transport)
-    {
-        $this->transport = $transport;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of AUthentication Mechanism
-     *
-     * @return KeyAuth
-     */
-    public function getAuth()
-    {
-        return $this->auth;
-    }
-
-    /**
-     * Set the value of AUthentication Mechanism
-     *
-     * @param KeyAuth auth
-     *
-     * @return self
-     */
-    public function setAuth(KeyAuth $auth)
-    {
-        $this->auth = $auth;
-
-        return $this;
-    }
-
 
     /**
      * executes the api call
@@ -96,7 +51,7 @@ class SerpsApiClient
         $authHeader = $this->getAuth()->computeHash();
         $authParts = explode(':', $authHeader);
 
-        $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+        // $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
         $request =  $this->transport->post(
             '/search_results/',
             array(
@@ -122,11 +77,60 @@ class SerpsApiClient
         $authHeader = $this->getAuth()->computeHash();
         $authParts = explode(':', $authHeader);
 
-        $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
+        // $this->transport->addSubscriber(\Guzzle\Plugin\Log\LogPlugin::getDebugPlugin());
 
         $request =  $this->transport->get('/search_results/' . $id);
         $response = $request->send();
 
         return $response->json();
     }
+
+    /**
+     * Get the value of HTTP transport
+     *
+     * @return \Guzzle\Http\Client
+     */
+    public function getTransport()
+    {
+        return $this->transport;
+    }
+
+    /**
+     * Set the value of HTTP transport
+     *
+     * @param \Guzzle\Http\Client transport
+     *
+     * @return self
+     */
+    private function setTransport(\Guzzle\Http\Client $transport)
+    {
+        $this->transport = $transport;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of AUthentication Mechanism
+     *
+     * @return KeyAuth
+     */
+    public function getAuth()
+    {
+        return $this->auth;
+    }
+
+    /**
+     * Set the value of AUthentication Mechanism
+     *
+     * @param KeyAuth auth
+     *
+     * @return self
+     */
+    private function setAuth(KeyAuth $auth)
+    {
+        $this->auth = $auth;
+
+        return $this;
+    }
+
 }
