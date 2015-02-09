@@ -11,13 +11,13 @@ $auth->setApiSecret(API_SECRET);
 $auth->setSalt(SALT);
 
 $serps = new Aseo\Api\V3\Serps\SerpsApiClient($guzzle, $auth);
-
+$serps->debug = true;
 
 $query = array(
     'region'=>'global',
     'search_engine' => 'google',
     'phrase' => 'abc',
-    'max_results' => 10,
+    'max_results' => 1000000,
     'universal' => 0,
 );
 

@@ -128,7 +128,8 @@ class SerpsRequest
             return $this->setTown($value);
         }
 
-        if ("search_type " == $field) {
+        if ("search_type" == $field) {
+
             return $this->setSearchType($value);
         }
 
@@ -188,7 +189,7 @@ class SerpsRequest
     {
 
         if (false === in_array($search_engine, $this->getSupportedSearchEngines())) {
-            throw new \InvalidArgumentException('Search Engine is not supported');
+            // throw new \InvalidArgumentException('Search Engine is not supported');
         }
 
         $this->search_engine = $search_engine;
