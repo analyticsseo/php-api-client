@@ -1,0 +1,33 @@
+{
+    "name": "Aseo/Api",
+    "type": "library",
+    "description": "Analytics SEO Api Client",
+    "keywords": ["REST", "API", "secure", "hmac"],
+    "homepage": "https://github.com/analyticsseo/api-client/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nuno Costa",
+            "email": "nuno@francodacosta.com",
+            "homepage": "http://www.francodacosta.com"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.0",
+        "guzzle/guzzle": "*"
+    },
+
+    "require-dev": {
+    },
+
+    "suggest": {
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Aseo": "src/"
+        }
+    }
+
+}
