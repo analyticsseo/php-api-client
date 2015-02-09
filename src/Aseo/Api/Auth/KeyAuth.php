@@ -32,10 +32,15 @@ class KeyAuth
      */
     private $apiKey;
 
+    /**
+     * Timestamp
+     * @var integer
+     */
+    private $timestamp;
 
     public function computeHash()
     {
-        $time = time();
+        $time = $this->getTimestamp();
 
         $hashSource = $time . $this->getApiKey() . $this->getSalt();
         $hash = hash_hmac('sha256', $hashSource, $this->getApiSecret());
@@ -127,6 +132,10 @@ class KeyAuth
      */
     public function getTimestamp()
     {
+        if (null === $this->timestamp) {
+            $this->timestamp = time();
+        }
+
         return $this->timestamp;
     }
 
@@ -143,4 +152,5 @@ class KeyAuth
 
         return $this;
     }
+
 }
