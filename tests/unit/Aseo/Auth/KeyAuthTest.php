@@ -45,8 +45,8 @@ class KeyAuthTest extends \PHPUnit_Framework_TestCase
         $ka = $this->getMockBuilder('\Aseo\Api\Auth\KeyAuth')->setMethods(array('getTimestamp'))->getMock();
 
         $ka->expects($this->any())
-                   ->method('getTimestamp')
-                   ->will($this->returnValue(1));
+           ->method('getTimestamp')
+           ->will($this->returnValue(1));
 
         $ka->setSalt('salt');
         $ka->setApiSecret('secret');
