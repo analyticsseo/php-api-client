@@ -32,12 +32,6 @@ class KeyAuth
      */
     private $apiKey;
 
-    /**
-     * Timestamp
-     * @var integer
-     */
-    private $timestamp;
-
     public function computeHash()
     {
         $time = $this->getTimestamp();
@@ -132,25 +126,6 @@ class KeyAuth
      */
     public function getTimestamp()
     {
-        if (null === $this->timestamp) {
-            $this->timestamp = time();
-        }
-
-        return $this->timestamp;
+        return time();
     }
-
-    /**
-     * Set the value of current timestamp
-     *
-     * @param integer timestamp
-     *
-     * @return self
-     */
-    public function setTimestamp($timestamp)
-    {
-        $this->timestamp = $timestamp;
-
-        return $this;
-    }
-
 }

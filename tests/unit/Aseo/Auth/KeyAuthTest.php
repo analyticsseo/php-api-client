@@ -38,17 +38,19 @@ class KeyAuthTest extends \PHPUnit_Framework_TestCase
         // was generated less than 1s ago
         $this->assertTrue(time() >= $ka->getTimestamp() -1);
 
-        $ka->setTimestamp(123);
-        $this->assertEquals(123, $ka->getTimestamp());
     }
 
     public function testComputeHash()
     {
-        $ka = new KeyAuth;
+        $ka = $this->getMockBuilder('\Aseo\Api\Auth\KeyAuth')->setMethods(array('getTimestamp'))->getMock();
+
+        $ka->expects($this->any())
+                   ->method('getTimestamp')
+                   ->will($this->returnValue(1));
+
         $ka->setSalt('salt');
         $ka->setApiSecret('secret');
         $ka->setApiKey('key');
-        $ka->setTimestamp(1);
 
 
         $hashSource = '1keysalt';
