@@ -29,6 +29,13 @@ $errorTests = array(
     ),
 );
 
+// Uncommoment the following lines and add the proper values
+// define('API_KEY', 'a');
+// define('API_SECRET', 'b');
+// define('SALT', 'c');
+
+// optionaly you can define the constansts in a file named settings.php
+@include 'settings.php';
 
 
 
@@ -37,13 +44,6 @@ $errorTests = array(
 
 include __DIR__ . '/../../vendor/autoload.php';
 
-// Uncommoment the following lines and add the proper values
-// define('API_KEY', 'a');
-// define('API_SECRET', 'b');
-// define('SALT', 'c');
-
-// optionaly you can define the constansts in a file named settings.php
-@include 'settings.php';
 
 $guzzle = new Guzzle\Http\Client('http://v3.api.analyticsseo.com');
 
