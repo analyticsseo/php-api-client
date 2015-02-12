@@ -69,13 +69,31 @@ foreach ($tests as $testName => $testData) {
             $fetchJobResponse = $serps->fetchJobData($jobId);
 
             if (false == $fetchJobResponse['ready']) {
-                sleep(3);
+                sleep(1);
                 continue;
             }
 
             if (array_key_exists('error', $fetchJobResponse)) {
                 echo "[ERROR]\n";
                 echo "\t ==> " . $fetchJobResponse['error'] . "\n\n";
+                break;
+            }
+
+            if (false === array_key_exists('payload', $fetchJobResponse)) {
+                echo "[ERROR]\n";
+                echo "\t ==> No payload response\n\n";
+                break;
+            }
+
+            if (false === is_array($fetchJobResponse['payload'])) {
+                echo "[ERROR]\n";
+                echo "\t ==> Payload response not an array\n\n";
+                break;
+            }
+
+            if (0 ==  count($fetchJobResponse['payload'])) {
+                echo "[ERROR]\n";
+                echo "\t ==> Empty payload response\n\n";
                 break;
             }
 
@@ -102,7 +120,7 @@ foreach ($errorTests as $testName => $testData) {
             $fetchJobResponse = $serps->fetchJobData($jobId);
 
             if (false == $fetchJobResponse['ready']) {
-                sleep(3);
+                sleep(1);
                 continue;
             }
 
@@ -111,6 +129,8 @@ foreach ($errorTests as $testName => $testData) {
                 echo "\t ==> " . $fetchJobResponse['error'] . "\n\n";
                 break;
             }
+
+
 
             echo "[ERROR]\n";
             echo "\t ==> Api returned no Error\n\n";
