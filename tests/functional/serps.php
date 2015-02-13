@@ -140,12 +140,12 @@ $errormaxresults = array(
     
 );
 
-// Uncommoment the following lines and add the proper values
- define('API_KEY', 'We4vJk3fWvm-2SPq');
- define('API_SECRET', 'ed9280642082fc537911a8b103ef91e0');
- define('SALT', 'j0_6vyTSL8Twe0tNVpjpiQ_NXdD_RiSXu5S0oqcPAZb3nWoioTS-lytaQ6VarkwF');
+// Uncomment the following lines and add the proper values
+ //define('API_KEY', 'a');
+ //define('API_SECRET', 'b');
+ //define('SALT', 'c');
 
-// optionaly you can define the constansts in a file named settings.php
+// optionally you can define the constants in a file named settings.php
 @include 'settings.php';
 
 
