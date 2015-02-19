@@ -2,7 +2,7 @@
 
 ## Installation
 ### Via Composer
-1. Run the command: ```composer require  require "aseo/api:*"```
+1. Run the command: ```composer require "aseo/api:*"```
 
 ### Manual Installation
 1. Clone this repository: ``git clone git@github.com:analyticsseo/php-api-client.git``
