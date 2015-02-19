@@ -1,20 +1,16 @@
 # Analytics SEO Official PHP API client
 
-## PHP Client
+## Instalation
+### Via Composer
+1. run ```composer require  require "aseo/api:*"```
 
-### Pre requisites
-1. a working php version > 5.3
-2. composer should be installed, see [composer](http://www.getcomposer.org) for details how to install
-
-### Installation
-
+### Manual installation
 1. clone repository
 2. go to the cloned folder folder
-3. run ```composer.phar install``` _(please refer to composer documentation for your operating system to find the proper way to execute it, on windows systems ```composer install``` seems to do the trick)_
+3. run ```composer install``` 
 
 to test the installation go to ```tests\functional``` folder and run ```php serps.php```
 
-_integration into packagist.org is comming soon_
 
 ## Sample Usage
 ```php
