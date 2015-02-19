@@ -1,6 +1,6 @@
 # Analytics SEO Official PHP API client
 
-## Instalation
+## Installation
 ### Via Composer
 1. Run the command: ```composer require  require "aseo/api:*"```
 
