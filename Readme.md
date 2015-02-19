@@ -15,20 +15,19 @@ to test the installation go to ```tests\functional``` folder and run ```php serp
 ## Sample Usage
 ```php
 <?php
-include __DIR__ . '/../../vendor/autoload.php';
+// only  needed if you run it directly, any modern framework deals with autoloading out of the box
+// include  '<PATH TO COMPOSER AUTOLOAD FILE'; 
 
-define('API_KEY', 'a');
-define('API_SECRET', 'b');
-define('SALT', 'c');
+
 
 // initialize the HTTP Transport Layer
 $guzzle = new Guzzle\Http\Client('http://v3.api.analyticsseo.com');
 
 // Setup Request Authentication
 $auth = new Aseo\Api\Auth\KeyAuth;
-$auth->setApiKey(API_KEY);
-$auth->setApiSecret(API_SECRET);
-$auth->setSalt(SALT);
+$auth->setApiKey(API_KEY); // do not forget to change this with the values provided by Analytics SEO
+$auth->setApiSecret(API_SECRET);  // do not forget to change this with the values provided by Analytics SEO
+$auth->setSalt(SALT);  // do not forget to change this with the values provided by Analytics SEO
 
 
 // The V3 SERPs Client
@@ -50,7 +49,7 @@ $data = new Aseo\Api\V3\Serps\SerpsRequest($query);
 // make the call
 $searchResultsResponse = $serps->searchResults($data);
 
-// store the job id, it will be usedfull to fetch the data as soon as the job is done
+// store the job id, it will be used to fetch the data as soon as the job is done
 $jobId = $searchResultsResponse['jid'];
 
 // check to see if job is ready, if not try again later
