@@ -133,12 +133,6 @@ $errorTests = array(
     ),
 );
 
-##################################################################################
-#   Tests that should return an api error message about max results being over 500
-##################################################################################
-$errormaxresults = array(
-    
-);
 
 // Uncomment the following lines and add the proper values
  //define('API_KEY', 'a');
