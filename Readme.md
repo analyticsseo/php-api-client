@@ -10,7 +10,7 @@
 3. run ```composer install``` 
 
 to test the installation go to ```tests\functional``` folder and run ```php serps.php```
-
+> **Do not forget to edit the file and add your credentials, or all tests will fail**
 
 ## Sample Usage
 ```php
