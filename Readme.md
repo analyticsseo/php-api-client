@@ -19,8 +19,8 @@
 ## Sample Usage
 ```php
 <?php
-// Uncomment the following if you run file directly, any modern framework deals
-// with autoloading out of the box.
+// Uncomment the following if you run this file directly, any modern framework
+// deals with autoloading out of the box.
 // include  '<PATH TO COMPOSER AUTOLOAD FILE'; 
 
 // Initialize the HTTP Transport Layer.
