@@ -1,5 +1,5 @@
 {
-    "name": "Aseo/Api",
+    "name": "aseo/api",
     "type": "library",
     "description": "Analytics SEO Api Client",
     "keywords": ["REST", "API", "secure", "hmac"],
