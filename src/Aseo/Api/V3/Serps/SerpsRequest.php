@@ -81,13 +81,6 @@ class SerpsRequest
     private $strategy;
 
     /**
-     * Set to use a output
-     * @var string
-     * @read-only
-     */
-    private $output;
-
-    /**
      * strategy configuration
      * @var array
      * @read-only
@@ -168,10 +161,6 @@ class SerpsRequest
 
         if ("strategy" == $field) {
             return $this->setStrategy($value);
-        }
-
-        if ("output" == $field) {
-            return $this->setOutput($value);
         }
 
         if ("parameters" == $field) {
@@ -416,30 +405,6 @@ class SerpsRequest
     private function setStrategy($strategy)
     {
         $this->strategy = $strategy;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of output
-     *
-     * @return string
-     */
-    public function getOutput()
-    {
-        return $this->output;
-    }
-
-    /**
-     * Set the value of output
-     *
-     * @param string output
-     *
-     * @return self
-     */
-    private function setOutput($output)
-    {
-        $this->output = $output;
 
         return $this;
     }
