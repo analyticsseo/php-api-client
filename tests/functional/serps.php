@@ -5,12 +5,14 @@
 ##################################################################################
 $tests = array(
     "google global" => array(
-        "request" => array(
-          'region'=>'global',
-              'search_engine' => 'google',
-               'phrase' => 'cricket world cup',
-                'universal' => 0,
-            )
+    "request" => array(
+        'region'=>'global',
+            'search_engine' => 'google',
+            'phrase' => 'cricket world cup',
+            'universal' => 0,
+            'language' => 'en',
+            'max_results' => 20,
+        )
     ),
 
     "google fr" => array(
@@ -19,6 +21,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => 'voulez-vous une tasse de thé ou une tasse de café ou une tasse de boisson gazeuse?',
             'language' => 'fr',
+            'max_results' => 20,
         )
     ),
 
@@ -28,6 +31,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => '你要一杯茶或一杯咖啡或一杯饮料吗？',
             'language' => 'zh-TW',
+            'max_results' => 20,
         )
     ),
     "google cn" => array(
@@ -36,6 +40,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => '你要一杯茶或一杯咖啡或一杯饮料吗？',
             'language' => 'zh-CN',
+            'max_results' => 20,
         )
     ),
 
@@ -45,6 +50,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => '你要一杯茶或一杯咖啡或一杯饮料吗？',
             'language' => 'zh-TW',
+            'max_results' => 20,
         )
     ),
     "google dz" => array(
@@ -53,6 +59,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => 'هل تريد فنجانا من الشاي أو فنجان من القهوة أو كوب من المشروبات الغازية؟',
             'language' => 'ar',
+            'max_results' => 20,
         )
     ),
 
@@ -62,6 +69,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => 'אתה רוצה כוס התה או כוס קפה או כוס שתייה קלה?',
             'language' => 'he',
+            'max_results' => 20,
         )
     ),
 
@@ -71,6 +79,7 @@ $tests = array(
             'search_engine' => 'bing',
             'phrase' => 'best place to take selfie in London',
             'language' => 'en',
+            'max_results' => 20,
         )
     ),
     "yahoo global" => array(
@@ -79,6 +88,7 @@ $tests = array(
             'search_engine' => 'yahoo',
             'phrase' => 'best place to take selfie in London',
             'language' => 'en',
+            'max_results' => 20,
         )
     ),
 
@@ -88,6 +98,7 @@ $tests = array(
             'search_engine' => 'yandex',
             'phrase' => 'best place to take selfie in London',
             'language' => 'en',
+            'max_results' => 20,
         )
     ),
 
@@ -97,6 +108,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => 'kérsz egy csésze tea vagy egy csésze kávé vagy egy pohár üdítő?',
             'language' => 'hu',
+            'max_results' => 20,
         )
     ),
 
@@ -106,6 +118,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => 'você quer uma xícara de chá ou uma xícara de café ou um copo de refrigerante?',
             'language' => 'pt-PT',
+            'max_results' => 20,
         )
     ),
 
@@ -115,6 +128,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => '당신은 차 한 잔 또는 커피 한 잔 또는 소프트 드링크 한 잔할까요?',
             'language' => 'ko',
+            'max_results' => 20,
         )
     ),
 
@@ -124,6 +138,7 @@ $tests = array(
             'search_engine' => 'google',
             'phrase' => 'আপনি এক কাপ চা বা কফি এক কাপ বা নরম পানীয় একটি কাপ চান?',
             'language' => 'bn',
+            'max_results' => 20,
         )
     ),
 );
@@ -141,6 +156,15 @@ $errorTests = array(
            'language' => 'asd',
         )
     ),
+
+    "language is mandatory" => array(
+         "request" => array(
+            'region'=>'global',
+            'search_engine' => 'google',
+            'phrase' => 'abc',
+            'universal' => 0,
+         )
+     ),
 );
 
 
@@ -194,19 +218,19 @@ foreach ($tests as $testName => $testData) {
                 break;
             }
 
-            if (false === array_key_exists('payload', $fetchJobResponse)) {
+            if (false === array_key_exists('response', $fetchJobResponse)) {
                 echo "[ERROR]\n";
                 echo "\t ==> No payload response\n\n";
                 break;
             }
 
-            if (false === is_array($fetchJobResponse['payload'])) {
+            if (false === is_array($fetchJobResponse['response'])) {
                 echo "[ERROR]\n";
                 echo "\t ==> Payload response not an array\n\n";
                 break;
             }
 
-            if (0 ==  count($fetchJobResponse['payload'])) {
+            if (0 ==  count($fetchJobResponse['response'])) {
                 echo "[ERROR]\n";
                 echo "\t ==> Empty payload response\n\n";
                 break;
