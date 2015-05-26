@@ -143,32 +143,7 @@ $tests = array(
     ),
 );
 
-##################################################################################
-#   Tests that should return an api error message
-##################################################################################
-$errorTests = array(
-   "invalid language" => array(
-        "request" => array(
-           'region'=>'global',
-           'search_engine' => 'google',
-           'phrase' => 'abc',
-           'universal' => 0,
-           'language' => 'asd',
-        )
-    ),
-
-    "language is mandatory" => array(
-         "request" => array(
-            'region'=>'global',
-            'search_engine' => 'google',
-            'phrase' => 'abc',
-            'universal' => 0,
-         )
-     ),
-);
-
-
-// Uncomment the following lines and add the proper values
+ // Uncomment the following lines and add the proper values
  //define('API_KEY', 'a');
  //define('API_SECRET', 'b');
  //define('SALT', 'c');
@@ -193,8 +168,6 @@ $auth->setSalt(SALT);
 
 $serps = new Aseo\Api\V3\Serps\SerpsApiClient($guzzle, $auth);
 $serps->debug = false;
-
-
 
 foreach ($tests as $testName => $testData) {
     echo "testing '$testName'\t";
@@ -243,42 +216,6 @@ foreach ($tests as $testName => $testData) {
 
     } catch (\Exception $e) {
             echo "[ERROR]\n";
-            echo "\t ==> " . $e->getMessage() . "\n\n";
-    }
-}
-
-foreach ($errorTests as $testName => $testData) {
-    echo "testing '$testName'\t";
-    $request = new Aseo\Api\V3\Serps\SerpsRequest($testData['request']);
-    try {
-        $searchResultsResponse = $serps->searchResults($request);
-        $jobId = $searchResultsResponse['jid'];
-        $testData['jid'] =  $searchResultsResponse['jid'];
-
-        while (true) {
-            $fetchJobResponse = $serps->fetchJobData($jobId);
-
-            if (false == $fetchJobResponse['ready']) {
-                sleep(1);
-                continue;
-            }
-
-            if (array_key_exists('error', $fetchJobResponse)) {
-                echo "[OK]";
-                // echo "\t ==> " . $fetchJobResponse['error'] . "\n\n";
-                break;
-            }
-
-
-
-            echo "[ERROR]\n";
-            echo "\t ==> Api returned no Error\n\n";
-            break;
-        }
-
-
-    } catch (\Exception $e) {
-            echo "[??]\n";
             echo "\t ==> " . $e->getMessage() . "\n\n";
     }
 }
