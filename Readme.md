@@ -47,7 +47,7 @@ $query = array(
   'region'=>'global',
   'search_engine' => 'google',
   'phrase' => 'abc',
-  'universal' => 0,
+  'language' => 'en',
 );
 
 // Create a SERPs request object.
@@ -65,7 +65,7 @@ $jobId = $searchResultsResponse['jid'];
 while (true) {
   $fetchJobResponse = $serps->fetchJobData($jobId);
   if (false == $fetchJobResponse['ready']) {
-    sleep(3);
+    sleep(60);
     continue;
   }
   var_export($fetchJobResponse);
