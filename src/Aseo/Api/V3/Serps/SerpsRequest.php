@@ -100,7 +100,7 @@ class SerpsRequest
      * @var string
      * @read-only
      */
-    private $userAgent;
+    private $user_agent;
 
     public function __construct(array $data)
     {
@@ -463,7 +463,7 @@ class SerpsRequest
      */
     private function setUserAgent($value)
     {
-        $this->userAgent = $value;
+        $this->user_agent = $value;
 
         return $this;
     }
@@ -475,6 +475,6 @@ class SerpsRequest
      */
     public function getUserAgent()
     {
-        return $this->userAgent;
+        return $this->user_agent;
     }
 }

@@ -12,6 +12,7 @@ $tests = array(
             'universal' => 0,
             'language' => 'en',
             'max_results' => 20,
+            'user_agent' => 'pc'
         )
     ),
 
@@ -177,6 +178,9 @@ foreach ($tests as $testName => $testData) {
         $jobId = $searchResultsResponse['jid'];
         $testData['jid'] =  $searchResultsResponse['jid'];
 
+        // var_dump($fetchJobResponse);
+        // die;
+
         while (true) {
             $fetchJobResponse = $serps->fetchJobData($jobId);
 
@@ -185,8 +189,6 @@ foreach ($tests as $testName => $testData) {
                 continue;
             }
 
-var_dump($fetchJobResponse);
-die;
 
             if (array_key_exists('error', $fetchJobResponse)) {
                 echo "[ERROR]\n";
