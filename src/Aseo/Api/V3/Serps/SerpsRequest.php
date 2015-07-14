@@ -95,6 +95,13 @@ class SerpsRequest
      */
     private $supportedSearchEngines = array('bing', 'google', 'yahoo', 'yandex');
 
+    /**
+     * Set to use a specific strategy
+     * @var string
+     * @read-only
+     */
+    private $userAgent;
+
     public function __construct(array $data)
     {
         $this->populate($data);
@@ -165,6 +172,10 @@ class SerpsRequest
 
         if ("parameters" == $field) {
             return $this->setParameters($value);
+        }
+
+        if ("user_agent" == $field) {
+            return $this->setUserAgent($value);
         }
 
         throw new \OutOfBoundsException('SERPS call does not support the parameter ' . $field);
@@ -441,5 +452,29 @@ class SerpsRequest
     private function getSupportedSearchEngines()
     {
         return $this->supportedSearchEngines;
+    }
+
+    /**
+     * Set the value of User Agent
+     *
+     * @param string strategy
+     *
+     * @return self
+     */
+    private function setUserAgent($value)
+    {
+        $this->userAgent = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of strategy configuration
+     *
+     * @return object
+     */
+    public function getUserAgent()
+    {
+        return $this->userAgent;
     }
 }

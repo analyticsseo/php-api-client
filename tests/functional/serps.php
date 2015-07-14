@@ -6,9 +6,9 @@
 $tests = array(
     "google global" => array(
     "request" => array(
-        'region'=>'global',
+        'region'=>'gb',
             'search_engine' => 'google',
-            'phrase' => 'cricket world cup',
+            'phrase' => 'spread betting',
             'universal' => 0,
             'language' => 'en',
             'max_results' => 20,
@@ -184,6 +184,9 @@ foreach ($tests as $testName => $testData) {
                 sleep(1);
                 continue;
             }
+
+var_dump($fetchJobResponse);
+die;
 
             if (array_key_exists('error', $fetchJobResponse)) {
                 echo "[ERROR]\n";

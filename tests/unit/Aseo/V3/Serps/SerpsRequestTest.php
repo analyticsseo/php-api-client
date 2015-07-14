@@ -117,6 +117,16 @@ class SerpsRequestTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testSetUserAgent()
+    {
+        $sr = new SerpsRequest(array(
+            'user_agent' => 'value'
+        ));
+
+        $this->assertEquals('value', $sr->getUserAgent());
+
+    }
+
     /**
      * @expectedExceptionMessage SERPS call does not support the parameter FOO
      * @expectedException OutOfBoundsException
