@@ -93,7 +93,7 @@ class SerpsRequest
      * @var string[]
      * @private
      */
-    private $supportedSearchEngines = array('bing', 'google', 'yahoo', 'yandex');
+    private $supportedSearchEngines = array('bing', 'google', 'yahoo', 'yandex', 'baidu');
 
     /**
      * Set to use a specific strategy
