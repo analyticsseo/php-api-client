@@ -12,7 +12,8 @@ $tests = array(
             'universal' => 0,
             'language' => 'en',
             'max_results' => 20,
-            'user_agent' => 'pc'
+            'user_agent' => 'pc',
+            // 'use_cache' => false,
         )
     ),
 
@@ -160,7 +161,8 @@ $tests = array(
 include __DIR__ . '/../../vendor/autoload.php';
 
 
-$guzzle = new Guzzle\Http\Client('http://v3.api.analyticsseo.com');
+// $guzzle = new Guzzle\Http\Client('http://v3.api.analyticsseo.com');
+$guzzle = new Guzzle\Http\Client('http://192.168.50.55:8080');
 
 $auth = new Aseo\Api\Auth\KeyAuth;
 $auth->setApiKey(API_KEY);

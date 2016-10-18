@@ -20,70 +20,60 @@ class SerpsRequest
     /**
      * Internal search engine name
      * @var string
-     * @read-only
      */
     private $search_engine;
 
     /**
      * Region code
      * @var string
-     * @read-only
      */
     private $region;
 
     /**
      * town name
      * @var string
-     * @read-only
      */
     private $town;
 
     /**
      * The search type
      * @var string
-     * @read-only
      */
     private $search_type ;
 
     /**
      * Language code
      * @var string
-     * @read-only
      */
     private $language;
 
     /**
      * Maximun number of results to return
      * @var integer
-     * @read-only
      */
     private $max_results;
 
     /**
      * The phrase to search for.
      * @var string
-     * @read-only
      */
     private $phrase;
 
     /**
      * return universal search results
      * @var boolean
-     * @read-only
      */
     private $universal;
 
     /**
      * Set to use a specific strategy
      * @var string
-     * @read-only
      */
     private $strategy;
 
     /**
      * strategy configuration
      * @var array
-     * @read-only
      */
     private $parameters;
 
@@ -98,9 +88,14 @@ class SerpsRequest
     /**
      * Set to use a specific strategy
      * @var string
-     * @read-only
      */
     private $user_agent;
+
+    /**
+     * Wether or not to use cached data, if available
+     * @var boolean
+     */
+    private $use_cache = TRUE;
 
     public function __construct(array $data)
     {
@@ -178,6 +173,10 @@ class SerpsRequest
             return $this->setUserAgent($value);
         }
 
+        if ("use_cache" == $field) {
+            return $this->setUseCache($value);
+        }
+
         throw new \OutOfBoundsException('SERPS call does not support the parameter ' . $field);
 
     }
@@ -192,10 +191,11 @@ class SerpsRequest
                 continue;
             }
 
-            if (null != $value) {
+            if (null !== $value) {
                 $json[$variable] = $value;
             }
         }
+
         return json_encode($json);
     }
 
@@ -217,7 +217,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setSearchEngine($search_engine)
+    public function setSearchEngine($search_engine)
     {
         if (false === in_array($search_engine, $this->getSupportedSearchEngines())) {
             throw new \InvalidArgumentException('Search Engine is not supported');
@@ -245,7 +245,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setRegion($region)
+    public function setRegion($region)
     {
         $this->region = $region;
 
@@ -269,7 +269,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setTown($town)
+    public function setTown($town)
     {
         $this->town = $town;
 
@@ -293,7 +293,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setSearchType($search_type)
+    public function setSearchType($search_type)
     {
         $this->search_type = $search_type;
 
@@ -317,7 +317,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setLanguage($language)
+    public function setLanguage($language)
     {
         $this->language = $language;
 
@@ -341,7 +341,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setMaxResults($max_results)
+    public function setMaxResults($max_results)
     {
         $this->max_results = $max_results;
 
@@ -365,7 +365,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setPhrase($phrase)
+    public function setPhrase($phrase)
     {
         $this->phrase = $phrase;
 
@@ -389,7 +389,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setUniversal($universal)
+    public function setUniversal($universal)
     {
         $this->universal = $universal;
 
@@ -413,7 +413,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setStrategy($strategy)
+    public function setStrategy($strategy)
     {
         $this->strategy = $strategy;
 
@@ -437,7 +437,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setParameters(array $parameters)
+    public function setParameters(array $parameters)
     {
         $this->parameters = $parameters;
 
@@ -461,7 +461,7 @@ class SerpsRequest
      *
      * @return self
      */
-    private function setUserAgent($value)
+    public function setUserAgent($value)
     {
         $this->user_agent = $value;
 
@@ -469,12 +469,36 @@ class SerpsRequest
     }
 
     /**
-     * Get the value of strategy configuration
+     * Get the value of USer Agent
      *
      * @return object
      */
     public function getUserAgent()
     {
         return $this->user_agent;
+    }
+
+    /**
+     * Set the value of Use Cache
+     *
+     * @param string strategy
+     *
+     * @return self
+     */
+    public function setUseCache($value)
+    {
+        $this->use_cache = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Use Chache
+     *
+     * @return object
+     */
+    public function getUseCache()
+    {
+        return $this->use_cache;
     }
 }
