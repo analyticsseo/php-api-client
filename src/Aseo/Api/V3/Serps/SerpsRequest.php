@@ -97,6 +97,12 @@ class SerpsRequest
      */
     private $use_cache = TRUE;
 
+    /**
+     * Wether or not to use include all results  (eg: paid results) as part of the universal listing
+     * @var boolean
+     */
+    private $include_all_in_universal = FALSE;
+
     public function __construct(array $data)
     {
         $this->populate($data);
@@ -175,6 +181,10 @@ class SerpsRequest
 
         if ("use_cache" == $field) {
             return $this->setUseCache($value);
+        }
+
+        if ("include_all_in_universal" == $field) {
+            return $this->setIncludeAllInUniversal($value);
         }
 
         throw new \OutOfBoundsException('SERPS call does not support the parameter ' . $field);
@@ -481,13 +491,27 @@ class SerpsRequest
     /**
      * Set the value of Use Cache
      *
-     * @param string strategy
+     * @param bool
      *
      * @return self
      */
     public function setUseCache($value)
     {
         $this->use_cache = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of Use Cache
+     *
+     * @param bool
+     *
+     * @return self
+     */
+    public function setIncludeAllInUniversal($value)
+    {
+        $this->include_all_in_universal = $value;
 
         return $this;
     }
