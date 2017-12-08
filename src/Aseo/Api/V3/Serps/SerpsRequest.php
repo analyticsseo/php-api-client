@@ -66,6 +66,12 @@ class SerpsRequest
     private $universal;
 
     /**
+     * Return x, y positioning in search results
+     * @var boolean
+     */
+    private $include_positioning;
+
+    /**
      * Set to use a specific strategy
      * @var string
      */
@@ -165,6 +171,10 @@ class SerpsRequest
 
         if ("universal" == $field) {
             return $this->setUniversal($value);
+        }
+
+        if ("include_positioning" == $field) {
+            return $this->setIncludePositioning($value);
         }
 
         if ("strategy" == $field) {
@@ -402,6 +412,30 @@ class SerpsRequest
     public function setUniversal($universal)
     {
         $this->universal = $universal;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of include positioning
+     *
+     * @return boolean
+     */
+    public function getIncludePositioning()
+    {
+        return $this->include_positioning;
+    }
+
+    /**
+     * Set the value of include positioning
+     *
+     * @param boolean includePositioning
+     *
+     * @return self
+     */
+    public function setIncludePositioning($includePositioning)
+    {
+        $this->include_positioning = $includePositioning;
 
         return $this;
     }
