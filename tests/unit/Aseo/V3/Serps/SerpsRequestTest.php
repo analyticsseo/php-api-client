@@ -97,6 +97,16 @@ class SerpsRequestTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testSetIncludePositioning()
+    {
+        $sr = new SerpsRequest(array(
+            'include_positioning' => true
+        ));
+
+        $this->assertEquals(true, $sr->getIncludePositioning());
+
+    }
+
     public function testSetStrategy()
     {
         $sr = new SerpsRequest(array(
@@ -147,8 +157,14 @@ class SerpsRequestTest extends \PHPUnit_Framework_TestCase
 
         $sr = new SerpsRequest($data);
 
-        $expected = json_encode(array('search_engine' => 'google'));
+        $expected = json_encode(
+            array(
+                'search_engine' => 'google',
+                'use_cache' => true,
+                'include_all_in_universal' => false,
+            )
+        );
 
-        $this->assertEquals($expected, $sr);
+        $this->assertEquals($expected, $sr->__toString());
     }
 }
